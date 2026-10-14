@@ -15,3 +15,24 @@ env/
 # IDE files
 .vscode/
 .idea/
+
+# Large datasets & raw videos (12 GB) - DO NOT PUSH TO GIT
+data/raw_videos/
+data/landmarks/
+data/features/*/*.npy
+*.mov
+*.MOV
+*.mp4
+*.MP4
+*.zip
+*.part
+*.kaggle-partial
+
+# Logs & temporary files
+*.log
+*log.txt
+*_temp*
+data/*/_temp*/
+
+# Trained model binaries (large files)
+data/models/*.pkl

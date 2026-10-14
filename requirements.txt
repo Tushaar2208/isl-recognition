@@ -1,3 +1,6 @@
 opencv-python>=4.10.0
 mediapipe>=0.10.30
 numpy>=1.26.0
+tqdm>=4.60.0
+datasets>=2.14.0
+pandas>=2.0.0
