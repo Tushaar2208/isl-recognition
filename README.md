@@ -137,25 +137,57 @@ python module4_train_classifiers.py
 
 ---
 
+## Project Structure
+
+```text
+isl-recognition/
+├── src/
+│   ├── config.py                       # Global configuration & paths
+│   ├── landmark_utils.py               # MediaPipe landmark normalizers
+│   ├── module1_sign_capture.py         # Module 1: Live webcam landmark capture
+│   ├── module2_download_dataset.py     # Module 2a: INCLUDE-50 downloader
+│   ├── module2_extract_landmarks.py    # Module 2b: Batch video landmark extraction
+│   ├── module3_feature_engineering.py  # Module 3: Geometric feature engineering
+│   ├── module4_train_classifiers.py    # Module 4: Supervised ML classification
+│   └── visualize_video_landmarks.py    # Video landmark overlay visualizer
+├── data/
+│   ├── metadata/                       # dataset_info.csv, class_mapping.json
+│   ├── models/                         # Evaluation report & confusion matrices
+│   └── logs/                           # Captured landmark logs
+├── docs/                               # Project screenshots & technical reports
+├── main.py                             # Unified CLI runner for all modules
+├── hand_landmarker.task                # MediaPipe model weights
+├── requirements.txt                    # Python dependencies
+└── README.md
+```
+
+---
+
 ## Quick Start
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 pip install -r requirements.txt
 
-# Download the hand landmarker model (one-time, ~7.5 MB)
-curl -L -O https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/latest/hand_landmarker.task
+# 2. Check system status and dataset metrics
+python main.py --status
 
-# Run Module 1
-python module1_sign_capture.py
+# 3. Run individual modules
+python main.py --module 1       # Live webcam sign capture
+python main.py --module 2       # Extract landmarks from videos
+python main.py --module 3       # Generate feature vectors
+python main.py --module 4       # Train classifiers & plot confusion matrix
+python main.py --demo           # Visual demo with landmark overlays
 ```
 
-### Controls
+### Module 1 Controls
 
 | Key | Action |
 |---|---|
-| `q` | Quit |
+| `q` | Quit live capture |
 | `s` | 5-second countdown, then save a snapshot with skeleton overlay |
+
+---
 
 ## Tech Stack
 
@@ -164,6 +196,9 @@ python module1_sign_capture.py
 | Language | Python 3.10+ |
 | Computer Vision | OpenCV |
 | Hand Detection | MediaPipe (Tasks API) |
-| Numerical Computing | NumPy |
+| Numerical Computing | NumPy, Pandas |
+| Machine Learning | Scikit-Learn |
+| Visualization | Matplotlib |
 
-> No GPU required. Runs in real time on a standard laptop CPU.
+> No GPU required. Runs entirely in real time on a standard laptop CPU.
+

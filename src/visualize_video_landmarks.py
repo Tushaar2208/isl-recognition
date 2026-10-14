@@ -46,6 +46,10 @@ def draw_skeleton(frame, landmarks, color=(0, 255, 0)):
         cv2.circle(frame, (cx, cy), 4, (0, 0, 255), -1)
 
 
+import sys
+sys.path.insert(0, str(Path(__file__).parent))
+from config import RAW_VIDEO_DIR, LANDMARK_DIR
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--video", type=str, default=None, help="Path to video file")
@@ -55,15 +59,16 @@ def main():
     if args.video:
         vid_path = Path(args.video)
     else:
-        vids = list(Path("data/raw_videos").rglob("*.MOV")) + list(Path("data/raw_videos").rglob("*.MP4"))
+        vids = list(RAW_VIDEO_DIR.rglob("*.MOV")) + list(RAW_VIDEO_DIR.rglob("*.MP4"))
         if not vids:
-            print("No videos found in data/raw_videos/")
+            print(f"No videos found in {RAW_VIDEO_DIR}")
             return
         vid_path = vids[0]
 
     # Find companion .npy landmark file
     cls_name = vid_path.parent.name
-    npy_path = Path("data/landmarks") / cls_name / f"{vid_path.stem}.npy"
+    npy_path = LANDMARK_DIR / cls_name / f"{vid_path.stem}.npy"
+
 
     if not npy_path.exists():
         print(f"Landmark file not found at {npy_path}")

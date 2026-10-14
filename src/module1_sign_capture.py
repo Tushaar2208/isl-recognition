@@ -48,8 +48,10 @@ DETECTION_CONFIDENCE = 0.6
 TRACKING_CONFIDENCE = 0.5
 LOG_EVERY_N_FRAMES = 5
 SCRIPT_DIR = Path(__file__).parent.resolve()
-LOG_PATH = SCRIPT_DIR / "landmark_log.jsonl"
-MODEL_PATH = SCRIPT_DIR / "hand_landmarker.task"
+PROJECT_ROOT = SCRIPT_DIR.parent if SCRIPT_DIR.name == "src" else SCRIPT_DIR
+LOG_PATH = PROJECT_ROOT / "data" / "logs" / "landmark_log.jsonl"
+MODEL_PATH = PROJECT_ROOT / "hand_landmarker.task"
+LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 # ── Hand-connection list (for drawing the skeleton overlay) ─────────────────
 # Same connections that mp.solutions.hands.HAND_CONNECTIONS used to provide.

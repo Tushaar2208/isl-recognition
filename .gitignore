@@ -17,9 +17,12 @@ env/
 .idea/
 
 # Large datasets & raw videos (12 GB) - DO NOT PUSH TO GIT
+data/raw_videos
 data/raw_videos/
+data/landmarks
 data/landmarks/
-data/features/*/*.npy
+data/features/*
+!data/features/feature_report.txt
 *.mov
 *.MOV
 *.mp4
@@ -33,6 +36,8 @@ data/features/*/*.npy
 *log.txt
 *_temp*
 data/*/_temp*/
+data/logs/
+data/logs
 
 # Trained model binaries (large files)
 data/models/*.pkl

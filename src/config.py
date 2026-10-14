@@ -13,7 +13,7 @@ from pathlib import Path
 
 # ── Project Paths ───────────────────────────────────────────────────────────
 
-PROJECT_ROOT = Path(__file__).parent.resolve()
+PROJECT_ROOT = Path(__file__).parent.parent.resolve()
 
 # Data directories
 DATA_DIR = PROJECT_ROOT / "data"
@@ -21,6 +21,8 @@ RAW_VIDEO_DIR = DATA_DIR / "raw_videos"
 LANDMARK_DIR = DATA_DIR / "landmarks"
 FEATURE_DIR = DATA_DIR / "features"
 METADATA_DIR = DATA_DIR / "metadata"
+LOG_DIR = DATA_DIR / "logs"
+
 
 # Model file (same one used by Module 1)
 MODEL_PATH = PROJECT_ROOT / "hand_landmarker.task"
@@ -107,5 +109,6 @@ JOINT_ANGLE_TRIPLETS = [
 
 def ensure_dirs():
     """Create all required data directories if they don't exist."""
-    for d in [DATA_DIR, RAW_VIDEO_DIR, LANDMARK_DIR, FEATURE_DIR, METADATA_DIR]:
+    for d in [DATA_DIR, RAW_VIDEO_DIR, LANDMARK_DIR, FEATURE_DIR, METADATA_DIR, LOG_DIR]:
         d.mkdir(parents=True, exist_ok=True)
+

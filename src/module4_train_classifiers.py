@@ -38,11 +38,11 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).parent))
-from config import ensure_dirs
+from config import ensure_dirs, FEATURE_DIR, DATA_DIR
 
-FEATURE_DIR = Path("data/features")
-MODEL_DIR   = Path("data/models")
+MODEL_DIR = DATA_DIR / "models"
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
 
 
 # ── 1. Load all stats features ─────────────────────────────────────────────
