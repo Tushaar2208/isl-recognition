@@ -47,12 +47,6 @@ Webcam → Hand Detection → Landmark Extraction → Normalization
 
 The completed module captures live webcam video, detects hands using MediaPipe, extracts 21 landmark points per hand, and normalizes them to be scale and position invariant.
 
-### Demo Screenshots
-
-| One Hand Detected | Two Hands Detected |
-|---|---|
-| ![One hand](docs/screenshots/snapshot_1788868360.png) | ![Two hands](docs/screenshots/snapshot_1788868774.png) |
-
 ### Normalization
 
 Each hand's 21 landmarks are:
