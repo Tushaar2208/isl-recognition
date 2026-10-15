@@ -93,6 +93,11 @@ def main():
         "--status", action="store_true",
         help="Display pipeline status and summary statistics"
     )
+    parser.add_argument(
+        "--video", type=str, default=None,
+        help="Path to specific video file to visualize with --demo"
+    )
+
     args = parser.parse_args()
 
     if args.module == 1:
@@ -123,10 +128,11 @@ def main():
         print_banner()
         print("\nStarting Landmark Visualizer (Press 'q' to quit, SPACE to pause)...")
         from src.visualize_video_landmarks import main as demo_main
-        demo_main()
+        demo_main(video=args.video)
 
     else:
         show_status()
+
 
 
 if __name__ == "__main__":

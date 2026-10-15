@@ -50,20 +50,25 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent))
 from config import RAW_VIDEO_DIR, LANDMARK_DIR
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--video", type=str, default=None, help="Path to video file")
-    args = parser.parse_args()
+def main(video=None):
+    if video is None:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--video", type=str, default=None, help="Path to video file")
+        args, _ = parser.parse_known_args()
+        vid_input = args.video
+    else:
+        vid_input = video
 
     # Default to first video found if none specified
-    if args.video:
-        vid_path = Path(args.video)
+    if vid_input:
+        vid_path = Path(vid_input)
     else:
         vids = list(RAW_VIDEO_DIR.rglob("*.MOV")) + list(RAW_VIDEO_DIR.rglob("*.MP4"))
         if not vids:
             print(f"No videos found in {RAW_VIDEO_DIR}")
             return
         vid_path = vids[0]
+
 
     # Find companion .npy landmark file
     cls_name = vid_path.parent.name
